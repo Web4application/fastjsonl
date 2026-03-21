@@ -1,0 +1,60 @@
+# fastjsonl
+
+**Ultra-fast JSONL streaming for Python** – powered by [orjson](https://github.com/ijl/orjson) (the fastest JSON lib).
+
+- `10×` faster `reads/writes` than manual `orjson` + file I/O on large files
+- Native compression: gzip, bzip2, xz, zstd
+- Memory-efficient streaming (no full load)
+- Batched I/O for high throughput
+
+## Install
+
+```bash
+pip install fastjsonl
+# For zstd support:
+pip install fastjsonl[zstd]
+```
+## BASH
+```fastjsonl
+├── src/                    # Source code (src layout prevents accidental imports during dev)
+│   └── fastjsonl/
+│       ├── __init__.py
+│       ├── __version__.py   # Single source of truth: __version__ = "0.1.0"
+│       └── core.py          # Your FastJSONL class + load/dump functions
+├── tests/                   # pytest suite
+│   ├── test_load.py
+│   └── test_dump.py
+├── benchmarks/              # asv or simple scripts comparing to orjsonl, jsonlines, manual orjson
+├── .github/
+│   └── workflows/
+│       ├── ci.yml           # Tests + lint on push/PR
+│       └── release.yml      # Build & publish on tags
+├── pyproject.toml           # All config: metadata, build-system, deps, tools
+├── README.md                # Detailed usage, benchmarks, install, why faster
+├── LICENSE                  # MIT (common for perf libs) or Apache-2.0
+├── CHANGELOG.md             # KeepVersion-style or conventional commits
+├── .gitignore               # Standard Python + Rust/C extensions if any
+└── MANIFEST.in              # If needed for non-Python files (rare with pyproject.toml)
+
+```
+```.git
+fastjsonl/
+├── src/
+│   └── fastjsonl/
+│       ├── __init__.py
+│       ├── __version__.py     # __version__ = "0.1.0"
+│       └── fastjsonl.py       # Paste/improve our FastJSONL class from earlier
+├── tests/
+│   ├── __init__.py
+│   ├── test_load.py
+│   └── test_dump.py           # Add simple pytest cases
+├── benchmarks/
+│   └── bench.py               # Optional: pytest-benchmark or simple timing script
+├── .github/workflows/
+│   ├── ci.yml                 # Tests/lint
+│   └── publish.yml            # Release on tags
+├── pyproject.toml             # See below
+├── README.md
+├── LICENSE                    # MIT
+├── CHANGELOG.md               # Start with v0.1.0 initial release
+└── requirements-dev.txt       # For local dev: pytest, ruff, etc.
