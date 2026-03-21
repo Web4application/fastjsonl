@@ -1,0 +1,19 @@
+# Install: pip install orjsonl
+
+import orjsonl
+
+# Read (streaming — great for huge files)
+for record in orjsonl.load("data.jsonl"):
+    print(record["id"])  # each line parsed as dict via orjson
+
+for record in orjsonl.load("large_data.jsonl.gz"):  # auto-detects compression
+    process(record)
+
+# Write
+orjsonl.dump(
+    [{"name": "Alice", "age": 30}, {"name": "Bob", "score": 95.5}],
+    "output.jsonl"
+)
+
+# Compressed write
+orjsonl.dump([...], "compressed.jsonl.zst")  # if zstandard installed
