@@ -33,10 +33,10 @@ zstd = ["zstandard >=0.23"]
 test = ["pytest >=7.0", "pytest-benchmark"]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/fastjsonl"
-Repository = "https://github.com/yourusername/fastjsonl"
-"Bug Tracker" = "https://github.com/yourusername/fastjsonl/issues"
-Changelog = "https://github.com/yourusername/fastjsonl/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/web4application/fastjsonl"
+Repository = "https://github.com/web4application/fastjsonl"
+"Bug Tracker" = "https://github.com/web4application/fastjsonl/issues"
+Changelog = "https://github.com/web4application/fastjsonl/blob/main/CHANGELOG.md"
 
 [tool.hatch.version]
 path = "src/fastjsonl/__version__.py"
@@ -53,3 +53,54 @@ testpaths = ["tests"]
 # Optional: linting config (install ruff locally)
 line-length = 88
 target-version = "py39"
+# test 
+[build-system]
+requires = ["hatchling >=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fastjsonl"
+dynamic = ["version"]
+description = "Ultra-fast streaming JSON Lines (JSONL/NDJSON) reader/writer powered by orjson, with native compression support (gzip, bz2, xz, zstd) and batch optimizations for high throughput."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+authors = [{name = "seriki yakub", email = "admin@web4.com"}]  # ← Update this!
+keywords = ["jsonl", "ndjson", "orjson", "fast", "streaming", "compression", "gzip", "zstd", "performance"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Markup :: JSON",
+]
+
+dependencies = [
+    "orjson >=3.10",
+]
+
+[project.optional-dependencies]
+zstd = ["zstandard >=0.23"]
+dev = ["pytest >=7.0", "pytest-benchmark", "ruff"]
+
+[project.urls]
+Homepage = "https://github.com/web4application/fastjsonl"
+Repository = "https://github.com/web4application/fastjsonl"
+Issues = "https://github.com/web4application/fastjsonl/issues"
+Changelog = "https://github.com/web4application/fastjsonl/blob/main/CHANGELOG.md"
+
+[tool.hatch.version]
+path = "src/fastjsonl/__version__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fastjsonl"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "--tb=short -ra"
+testpaths = ["tests"]
