@@ -1,4 +1,3 @@
-# fastjsonl.py
 import orjson
 import gzip
 import bz2
