@@ -4,13 +4,13 @@ build-backend = "hatchling.build"
 
 [project]
 name = "fastjsonl"
-version = "0.1.0"                  # Or dynamic = ["version"] and read from src/fastjsonl/__version__.py
-description = "Ultra-fast JSON Lines (JSONL/NDJSON) reader/writer powered by orjson"
+dynamic = ["version"]
+description = "Ultra-fast JSON Lines (JSONL/NDJSON) streaming reader/writer powered by orjson, with compression support"
 readme = "README.md"
-requires-python = ">=3.9"          # Match orjson's support
-license = {text = "MIT"}
-authors = [{name = "Your Name", email = "you@example.com"}]
-keywords = ["jsonl", "ndjson", "orjson", "fast", "streaming", "compression"]
+requires-python = ">=3.9"
+license = "MIT"
+authors = [{name = "seriki yakub", email = "kubulee.kl@gmail.com"}]
+keywords = ["jsonl", "ndjson", "orjson", "fast", "streaming", "compression", "gzip", "zstd"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -21,29 +21,35 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Markup :: JSON",
 ]
 
 dependencies = [
-    "orjson >=3.10",               # Latest stable
+    "orjson >=3.10",
 ]
 
 [project.optional-dependencies]
-zstd = ["zstandard >=0.23"]        # For .zst support
-test = ["pytest", "pytest-benchmark"]
+zstd = ["zstandard >=0.23"]
+test = ["pytest >=7.0", "pytest-benchmark"]
 
 [project.urls]
 Homepage = "https://github.com/yourusername/fastjsonl"
 Repository = "https://github.com/yourusername/fastjsonl"
-Documentation = "https://fastjsonl.readthedocs.io"  # Optional, add later
+"Bug Tracker" = "https://github.com/yourusername/fastjsonl/issues"
 Changelog = "https://github.com/yourusername/fastjsonl/blob/main/CHANGELOG.md"
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/fastjsonl"]
 
 [tool.hatch.version]
 path = "src/fastjsonl/__version__.py"
 
+[tool.hatch.build.targets.wheel]
+packages = ["src/fastjsonl"]
+
 [tool.pytest.ini_options]
 minversion = "7.0"
-addopts = "-ra --strict-markers"
+addopts = "-ra --tb=short"
 testpaths = ["tests"]
+
+[tool.ruff]
+# Optional: linting config (install ruff locally)
+line-length = 88
+target-version = "py39"
