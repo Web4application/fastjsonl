@@ -1,0 +1,39 @@
+# Install: pip install orjsonl
+
+import orjsonl
+
+# Read (streaming — great for huge files)
+for record in orjsonl.load("data.jsonl"):
+    print(record["id"])  # each line parsed as dict via orjson
+
+for record in orjsonl.load("large_data.jsonl.gz"):  # auto-detects compression
+    process(record)
+
+# Write
+orjsonl.dump(
+    [{"name": "Alice", "age": 30}, {"name": "Bob", "score": 95.5}],
+    "output.jsonl"
+)
+
+# Compressed write
+orjsonl.dump([...], "compressed.jsonl.zst")  # if zstandard installed
+# In FastJSONL class
+@staticmethod
+def dump(
+    iterable: Iterable[Any],
+    path: str | Path | BinaryIO,
+    *,
+    option: int | None = None,  # orjson options
+    compress: str | None = None,
+    level: int = 6,
+    batch_size_bytes: int = 1024 * 1024,
+) -> None:
+    # ... existing code ...
+    for item in iterable:
+        buffer.write(orjson.dumps(item, option=option))
+        buffer.write(b"\n")
+        if buffer.tell() >= batch_size_bytes:
+            f.write(buffer.getvalue())
+            buffer.seek(0)
+            buffer.truncate(0)
+    # Final flush...
