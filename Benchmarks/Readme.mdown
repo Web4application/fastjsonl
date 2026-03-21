@@ -1,0 +1,22 @@
+>Add badges later (e.g. PyPI version, tests passing via shields.io).
+
+#### 6. CI & Auto-Publish (GitHub Actions)
+Create `.github/workflows/ci.yml` and `publish.yml` as outlined earlier.
+
+For publish.yml, use Trusted Publishing:
+- On PyPI.org → Account → Publishing → Add your GitHub repo as trusted.
+- No tokens needed!
+
+#### 7. First Release
+- Commit everything.
+- `git tag v0.1.0`
+- `git push --tags`
+- Actions builds → publishes to PyPI.
+- Create GitHub release with changelog.
+
+#### 8. Promotion & Maintenance
+- Add to awesome-python-json or similar lists (PR to repos).
+- Share on Reddit/r/Python, X, Hacker News if benchmarks shine.
+- Add dependabot.yml for auto-updates.
+- Encourage forks/PRs with CONTRIBUTING.md.
+
