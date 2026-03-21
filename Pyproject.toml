@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fastjsonl"
+version = "0.1.0"                  # Or dynamic = ["version"] and read from src/fastjsonl/__version__.py
+description = "Ultra-fast JSON Lines (JSONL/NDJSON) reader/writer powered by orjson"
+readme = "README.md"
+requires-python = ">=3.9"          # Match orjson's support
+license = {text = "MIT"}
+authors = [{name = "Your Name", email = "you@example.com"}]
+keywords = ["jsonl", "ndjson", "orjson", "fast", "streaming", "compression"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "orjson >=3.10",               # Latest stable
+]
+
+[project.optional-dependencies]
+zstd = ["zstandard >=0.23"]        # For .zst support
+test = ["pytest", "pytest-benchmark"]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/fastjsonl"
+Repository = "https://github.com/yourusername/fastjsonl"
+Documentation = "https://fastjsonl.readthedocs.io"  # Optional, add later
+Changelog = "https://github.com/yourusername/fastjsonl/blob/main/CHANGELOG.md"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fastjsonl"]
+
+[tool.hatch.version]
+path = "src/fastjsonl/__version__.py"
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra --strict-markers"
+testpaths = ["tests"]
