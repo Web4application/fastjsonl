@@ -1,5 +1,5 @@
 /*
- * History: First version dated from 3/26, derived from my SCMLIB version
+ * History: First  version dated from 3/26, derived from my SCMLIB version
  * for win16.
  */
 /*
