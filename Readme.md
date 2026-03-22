@@ -1,21 +1,51 @@
 # fastjsonl
 
-**Ultra-fast JSONL streaming for Python** – powered by [orjson](https://github.com/ijl/orjson) (the fastest JSON lib).
+Ultra-fast streaming JSON Lines (JSONL/NDJSON) for Python, 
 
-- `10×` faster `reads/writes` than manual `orjson` + file I/O on large files
-- Native compression: gzip, bzip2, xz, zstd
-- Memory-efficient streaming (no full load)
-- Batched I/O for high throughput
+[![PyPI](https://img.shields.io/pypi/v/fastjsonl?color=blue)](https://pypi.org/project/fastjsonl/)  
+[![Python](https://img.shields.io/pypi/pyversions/fastjsonl)](https://pypi.org/project/fastjsonl/)  
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)  
+[![Tests](https://img.shields.io/github/actions/workflow/status/Web4application/fastjsonl/ci.yml?branch=main)](https://github.com/Web4application/fastjsonl/actions)
 
-## Install
+### Features
+- Blazing-fast via orjson
+- Streaming read/write (low memory)
+- Built-in compression: gzip, bzip2, xz, zstd
+- Batched I/O + orjson options support
+
+### Installation
 
 ```bash
+pip install fastjsonl
+# For zstd:
+pip install "fastjsonl[zstd]"
+```
+## Features
+
+- Extremely fast parsing and serialization via **orjson**
+- Streaming read/write — process gigabyte-scale JSONL files with low memory footprint
+- Built-in compression support:  
+  - gzip (`.gz`)  
+  - bzip2 (`.bz2`)  
+  - xz/lzma (`.xz`, `.lzma`)  
+  - zstd (`.zst`) — best speed/compression ratio (requires `zstandard` extra)
+- Batched I/O to minimize overhead on large writes
+- Pass any `orjson` option flags (e.g. pretty-print, sort keys, numpy/UUID/dataclass support)
+- Simple functional API: `load()` and `dump()`
+
+## Installation
+
+```sh
+pip install fastjsonl
+```
+## installation
+```sh
 pip install fastjsonl
 # For zstd support:
 pip install fastjsonl[zstd]
 ```
 ## BASH
-```fastjsonl
+```sh
 ├── src/                    # Source code (src layout prevents accidental imports during dev)
 │   └── fastjsonl/
 │       ├── __init__.py
@@ -37,7 +67,7 @@ pip install fastjsonl[zstd]
 └── MANIFEST.in              # If needed for non-Python files (rare with pyproject.toml)
 
 ```
-```.git
+```bash
 fastjsonl/
 ├── src/
 │   └── fastjsonl/
