@@ -1,4 +1,5 @@
->Add badges later (e.g. PyPI version, tests passing via shields.io).
+Add badges later (e.g. PyPI version, tests passing via shields.io).
+
 
 #### 6. CI & Auto-Publish (GitHub Actions)
 Create `.github/workflows/ci.yml` and `publish.yml` as outlined earlier.
