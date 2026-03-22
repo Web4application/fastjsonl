@@ -44,8 +44,90 @@ pip install fastjsonl
 # For zstd support:
 pip install fastjsonl[zstd]
 ```
-## BASH
-```sh
+```.iex
+powershellExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+```.uv
+uv pip compile requirements.in \
+   --universal \
+   --output-file requirements.txt
+uv init fastjsonl
+
+cd fastjsonl
+
+uv add ruff
+```
+```.venv
+curl -LsSf https://astral.sh/uv/1.0.9/install.sh | sh
+
+
+
+
+
+
+uv run ruff check
+
+
+uv lock
+
+
+uv sync
+```
+```bash
+echo 'import requests; print(requests.get("https://astral.sh"))' > fastjsonl.py
+```
+```.uv
+uv add --script example.py requests
+uv run fastjsonl.py
+
+uv python install 3.10 3.11 3.12
+uv venv
+uv pip sync requirements.txt
+wget -qO- https://astral.sh/uv/install.sh | sh
+```
+```.ps1
+powershell-ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+```jcl
+uv pip compile requirements.in \
+   --universal \
+   --output-file requirements.txt
+uv init fastjsonl
+
+cd fastjsonl
+
+uv add ruff
+
+curl -LsSf https://astral.sh/uv/1.0.9/install.sh | sh
+
+
+
+
+
+
+uv run ruff check
+
+
+uv lock
+
+
+uv sync
+```
+```.venv
+echo 'import requests; print(requests.get("https://astral.sh"))' > fastjsonl.py
+```
+```cp
+uv add --script example.py requests
+uv run fastjsonl.py
+
+uv python install 3.10 3.11 3.12
+uv venv
+uv pip sync requirements.txt
+wget -qO- https://astral.sh/uv/install.sh | sh
+```
+
+```code
 ├── src/                    # Source code (src layout prevents accidental imports during dev)
 │   └── fastjsonl/
 │       ├── __init__.py
@@ -65,9 +147,11 @@ pip install fastjsonl[zstd]
 ├── CHANGELOG.md             # KeepVersion-style or conventional commits
 ├── .gitignore               # Standard Python + Rust/C extensions if any
 └── MANIFEST.in              # If needed for non-Python files (rare with pyproject.toml)
-
 ```
-```bash
+```nu
+use .venv\Scripts\activate.nu
+```
+```pymdownx
 fastjsonl/
 ├── src/
 │   └── fastjsonl/
@@ -89,8 +173,10 @@ fastjsonl/
 ├── CHANGELOG.md               # Start with v0.1.0 initial release
 └── requirements-dev.txt       # For local dev: pytest, ruff, etc.
 ```
-# Quick test
-```python
+
+# ```pymkdownx
+
+```py
 from fastjsonl import load, dump
 import orjson
 
