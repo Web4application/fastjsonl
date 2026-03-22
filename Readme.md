@@ -88,3 +88,26 @@ fastjsonl/
 ├── LICENSE                    # MIT
 ├── CHANGELOG.md               # Start with v0.1.0 initial release
 └── requirements-dev.txt       # For local dev: pytest, ruff, etc.
+```
+# Quick test
+```python
+from fastjsonl import load, dump
+import orjson
+
+# Read compressed streaming (auto-detects .gz/.zst/etc.)
+for record in load("huge_logs.jsonl.zst"):
+    print(record["timestamp"], record["level"])
+
+# Write with zstd level 5 (good speed/ratio balance)
+data = [{"id": i, "value": f"test_{i}"} for i in range(100_000)]
+dump(data, "output.jsonl.zst", compression="zstd", level=5, option=orjson.OPT_INDENT_2)
+```
+
+# an “APL-flavored” ultra-fast JSONL processor
+```python
+from fastjsonl import load_apl  # hypothetical APL-inspired mode
+
+data = load_apl("huge.jsonl.zst")   # returns an "APL-like array" proxy (lazy, chunked)
+timestamps = data['timestamp']       # array select — no loop
+high_values = data[data['value'] > 1000]  # vectorized filter
+avg = (+/data['value']) / ⍴data      # sum / shape — APL-style reduction
